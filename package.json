@@ -1,5 +1,4 @@
 {
-<<<<<<< HEAD
   "name": "ruby-mountain-hotdogs",
   "private": true,
   "version": "0.0.0",
@@ -30,19 +29,3 @@
     "vite": "^6.3.5"
   }
 }
-=======
-    "name": "ruby-hotdog-stripe",
-    "version": "1.0.0",
-    "main": "server.js",
-    "scripts": {
-      "start": "node server.js"
-    },
-    "dependencies": {
-      "body-parser": "^1.20.0",
-      "cors": "^2.8.5",
-      "express": "^4.18.1",
-      "stripe": "^8.0.0"
-    }
-  }
-  
->>>>>>> f96e0e054d3553db61d1be4a29bfd05179c0bff2
