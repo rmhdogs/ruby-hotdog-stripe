@@ -18,7 +18,6 @@ app.post('/create-checkout-session', async (req, res) => {
     if (!cart || cart.length === 0) {
       return res.status(400).json({ error: 'Cart is empty or missing' });
     }
-
     const line_items = cart.map(item => ({
       price_data: {
         currency: 'usd',
@@ -35,6 +34,27 @@ app.post('/create-checkout-session', async (req, res) => {
       },
       quantity: item.quantity || 1,
     }));
+
+    // Add tax
+    const subtotal = cart.reduce((total, item) => {
+      const quantity = item.quantity || 1;
+      const price = item.price || 0;
+      return total + quantity * price;
+    }, 0);
+
+    const taxAmount = Math.round(subtotal * 0.071 * 100);
+
+    line_items.push({
+      price_data: {
+        currency: 'usd',
+        product_data: {
+          name: 'Sales Tax (7.1%)'
+        },
+        unit_amount: taxAmount
+      },
+      quantity: 1
+    });
+
 
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
