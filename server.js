@@ -2,7 +2,6 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const Stripe = require('stripe');
-require('dotenv').config(); // in case you ever want to test locally
 
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
 
